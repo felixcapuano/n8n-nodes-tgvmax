@@ -9,15 +9,15 @@ import {
 
 import { merge } from 'lodash';
 
-export class TGVMax implements INodeType {
+export class Tgvmax implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'TGVMax',
+		displayName: 'Tgvmax',
 		name: 'tgvmax',
 		group: ['input'],
 		version: 1,
 		description: 'Access tgvmax planner API',
 		defaults: {
-			name: 'TGVMax',
+			name: 'Tgvmax',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
@@ -29,6 +29,7 @@ export class TGVMax implements INodeType {
 				displayName: 'Operation',
 				name: 'operation',
 				type: 'options',
+				noDataExpression: true,
 				options: [
 					{
 						name: 'Search Freeplaces',

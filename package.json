@@ -1,15 +1,15 @@
 {
 	"name": "n8n-nodes-tgvmax",
-	"version": "0.1.0",
-	"description": "",
+	"version": "0.1.13",
+	"description": "This n8n node allows you to interact with the TGVmax Planner API, enabling you to integrate TGVmax functionality into your workflows. TGVmax is a service that provides information about train schedules and routes.",
 	"keywords": [
 		"n8n-community-node-package"
 	],
 	"license": "MIT",
 	"homepage": "",
 	"author": {
-		"name": "",
-		"email": ""
+		"name": "felixc",
+		"email": "essais2615@gmail.com"
 	},
 	"repository": {
 		"type": "git",
@@ -19,10 +19,10 @@
 	"scripts": {
 		"build": "tsc && gulp build:icons",
 		"dev": "tsc --watch",
-		"format": "prettier nodes credentials --write",
-		"lint": "eslint nodes credentials package.json",
-		"lintfix": "eslint nodes credentials package.json --fix",
-		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+		"format": "prettier nodes --write",
+		"lint": "eslint nodes package.json",
+		"lintfix": "eslint nodes package.json --fix",
+		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes package.json"
 	},
 	"files": [
 		"dist"
@@ -31,7 +31,7 @@
 		"n8nNodesApiVersion": 1,
 		"credentials": [],
 		"nodes": [
-			"dist/nodes/TGVMax/TGVMax.node.ts"
+			"dist/nodes/Tgvmax/Tgvmax.node.js"
 		]
 	},
 	"devDependencies": {
@@ -42,11 +42,11 @@
 		"eslint-plugin-n8n-nodes-base": "^1.11.0",
 		"gulp": "^4.0.2",
 		"n8n-core": "*",
-		"n8n-workflow": "*",
 		"prettier": "^2.7.1",
 		"typescript": "~4.8.4"
 	},
 	"dependencies": {
-		"lodash": "^4.17.21"
+		"lodash": "^4.17.21",
+		"n8n-workflow": "^1.14.1"
 	}
 }
