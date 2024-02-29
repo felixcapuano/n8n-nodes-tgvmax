@@ -6,7 +6,6 @@ import {
 	IDataObject,
 	IHttpRequestOptions,
 } from 'n8n-workflow';
-
 import { merge } from 'lodash';
 
 export class Tgvmax implements INodeType {
@@ -34,6 +33,10 @@ export class Tgvmax implements INodeType {
 					{
 						name: 'Search Freeplaces',
 						value: 'searchFreeplaces',
+					},
+					{
+						name: 'Search Station',
+						value: 'searchStation',
 					},
 				],
 				default: 'searchFreeplaces',
@@ -77,8 +80,22 @@ export class Tgvmax implements INodeType {
 				},
 				default: '2024-02-29T00:00:00',
 			},
+			{
+				displayName: 'Search Station',
+				name: 'stationName',
+				type: 'string',
+				placeholder: 'Station Name',
+				description: 'Name of the station',
+				displayOptions: {
+					show: {
+						operation: ['searchStation'],
+					},
+				},
+				default: 'Paris Gare de Lyon',
+			},
 		],
 	};
+
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		let request: IHttpRequestOptions = {
 			baseURL: 'https://www.maxjeune-tgvinoui.sncf',
@@ -107,6 +124,14 @@ export class Tgvmax implements INodeType {
 						url: '/api/public/refdata/search-freeplaces-proposals',
 						headers: { 'Content-Type': 'application/json' },
 						body: { departureDateTime, destination, origin },
+					});
+				} else if (operation === 'searchStation') {
+					const query = this.getNodeParameter('stationName', i);
+
+					request = merge(request, {
+						method: 'GET',
+						url: '/api/public/refdata/freeplaces-stations',
+						qs: { label: query },
 					});
 				}
 
