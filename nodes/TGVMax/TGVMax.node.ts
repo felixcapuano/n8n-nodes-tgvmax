@@ -8,7 +8,6 @@ import {
 } from 'n8n-workflow';
 
 import { merge } from 'lodash';
-import { error } from 'n8n-workflow/dist/LoggerProxy';
 
 export class TGVMax implements INodeType {
 	description: INodeTypeDescription = {
